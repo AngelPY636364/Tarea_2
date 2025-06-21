@@ -1,0 +1,2091 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios de Programación Web - HTML, CSS y JavaScript</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            color: #dc143c;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #1e3c72;
+            font-size: 1.2rem;
+        }
+
+        .nav-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+            justify-content: center;
+        }
+
+        .nav-tab {
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            color: #4a5568;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-tab:hover {
+            background: #dc143c;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .nav-tab.active {
+            background: #dc143c;
+            color: white;
+        }
+
+        .exercise {
+            display: none;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .exercise.active {
+            display: block;
+        }
+
+        .exercise h2 {
+            color: #dc143c;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            border-bottom: 3px solid #dc143c;
+            padding-bottom: 10px;
+        }
+
+        /* Ejercicio 1: Cambio de Estilo */
+        .style-changer {
+            text-align: center;
+        }
+
+        .color-box {
+            width: 300px;
+            height: 200px;
+            background: #e2e8f0;
+            margin: 20px auto;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: all 0.5s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn {
+            background: #dc143c;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin: 5px;
+        }
+
+        .btn:hover {
+            background: #b91c3c;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Ejercicio 2: Calculadora */
+        .calculator {
+            max-width: 300px;
+            margin: 0 auto;
+            background: #2d3748;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .calc-display {
+            width: 100%;
+            height: 60px;
+            background: #1a202c;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 1.5rem;
+            text-align: right;
+            padding: 0 15px;
+            margin-bottom: 15px;
+        }
+
+        .calc-buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .calc-btn {
+            height: 50px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .calc-btn.number {
+            background: #4a5568;
+            color: white;
+        }
+
+        .calc-btn.operator {
+            background: #dc143c;
+            color: white;
+        }
+
+        .calc-btn.equals {
+            background: #1e3c72;
+            color: white;
+        }
+
+        .calc-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* Ejercicio 3: Cambio de Imagen */
+        .image-hover {
+            text-align: center;
+        }
+
+        .hover-image {
+            width: 400px;
+            height: 250px;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            margin: 20px auto;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .hover-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.3s ease;
+        }
+
+        .hover-image:hover img {
+            transform: scale(1.1);
+            filter: brightness(1.2) saturate(1.3);
+        }
+
+        .image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            color: white;
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .hover-image:hover .image-overlay {
+            transform: translateY(0);
+        }
+
+        /* Ejercicio 4: Reloj Analógico */
+        .clock-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .analog-clock {
+            width: 200px;
+            height: 200px;
+            border: 8px solid #dc143c;
+            border-radius: 50%;
+            position: relative;
+            background: white;
+            margin: 20px;
+        }
+
+        .clock-center {
+            width: 12px;
+            height: 12px;
+            background: #dc143c;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 3;
+        }
+
+        .hand {
+            position: absolute;
+            background: #2d3748;
+            transform-origin: bottom center;
+            border-radius: 2px;
+        }
+
+        .hour-hand {
+            width: 4px;
+            height: 50px;
+            top: 25%;
+            left: 50%;
+            margin-left: -2px;
+        }
+
+        .minute-hand {
+            width: 3px;
+            height: 70px;
+            top: 15%;
+            left: 50%;
+            margin-left: -1.5px;
+        }
+
+        .second-hand {
+            width: 1px;
+            height: 80px;
+            top: 10%;
+            left: 50%;
+            margin-left: -0.5px;
+            background: #dc143c;
+        }
+
+        .digital-time {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #dc143c;
+            text-align: center;
+        }
+
+        /* Ejercicio 5: Validación de Formulario */
+        .form-container {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #4a5568;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #dc143c;
+        }
+
+        .form-group input.error {
+            border-color: #dc143c;
+        }
+
+        .error-message {
+            color: #dc143c;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        .success-message {
+            color: #1e3c72;
+            font-size: 1rem;
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        /* Ejercicio 6: Lista de Tareas */
+        .todo-container {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .todo-input-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .todo-input {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .todo-list {
+            list-style: none;
+        }
+
+        .todo-item {
+            background: #f7fafc;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .todo-item:hover {
+            background: #edf2f7;
+        }
+
+        .todo-item.completed {
+            text-decoration: line-through;
+            opacity: 0.6;
+        }
+
+        .delete-btn {
+            background: #dc143c;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        /* Ejercicio 7: Menú Desplegable */
+        .dropdown-menu {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .menu-bar {
+            background: #dc143c;
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .menu-item {
+            position: relative;
+            flex: 1;
+        }
+
+        .menu-link {
+            display: block;
+            padding: 15px 20px;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            text-align: center;
+        }
+
+        .menu-link:hover {
+            background: #b91c3c;
+        }
+
+        .submenu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #1e3c72;
+            min-width: 200px;
+            display: none;
+            z-index: 1000;
+            border-radius: 0 0 8px 8px;
+        }
+
+        .submenu.show {
+            display: block;
+        }
+
+        .submenu a {
+            display: block;
+            padding: 10px 20px;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .submenu a:hover {
+            background: #2a5298;
+        }
+
+        /* Ejercicio 8: Carrusel */
+        .carousel-container {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            height: 400px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .slide-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .slide-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .slide-content p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(220, 20, 60, 0.9);
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .carousel-btn:hover {
+            background: rgba(220, 20, 60, 1);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-btn.prev {
+            left: 15px;
+        }
+
+        .carousel-btn.next {
+            right: 15px;
+        }
+
+        .carousel-indicators {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            margin: 0 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .indicator.active {
+            background: #dc143c;
+            transform: scale(1.3);
+        }
+
+        .indicator:hover {
+            background: rgba(220, 20, 60, 0.7);
+        }
+
+        /* Ejercicio 9: Temporizador */
+        .timer-container {
+            text-align: center;
+        }
+
+        .timer-display {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #dc143c;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            background: #f7fafc;
+            padding: 20px;
+            border-radius: 15px;
+            border: 3px solid #dc143c;
+        }
+
+        .timer-controls {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .timer-input {
+            padding: 8px;
+            border: 2px solid #e2e8f0;
+            border-radius: 5px;
+            width: 80px;
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        .timer-status {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .timer-status.running {
+            background: #c6f6d5;
+            color: #22543d;
+        }
+
+        .timer-status.paused {
+            background: #fed7d7;
+            color: #742a2a;
+        }
+
+        .timer-status.finished {
+            background: #bee3f8;
+            color: #2a4365;
+        }
+
+        /* Ejercicio 10: Quiz */
+        .quiz-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .question {
+            background: #f7fafc;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 4px solid #dc143c;
+        }
+
+        .question h3 {
+            margin-bottom: 15px;
+            color: #dc143c;
+        }
+
+        .options {
+            list-style: none;
+        }
+
+        .options li {
+            margin-bottom: 10px;
+        }
+
+        .options input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        .quiz-result {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-tabs {
+                flex-direction: column;
+            }
+            
+            .nav-tab {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .container {
+                padding: 10px;
+            }
+            
+            .exercise {
+                padding: 20px;
+            }
+
+            .hover-image {
+                width: 100%;
+                max-width: 350px;
+            }
+
+            .carousel-slide {
+                height: 300px;
+            }
+
+            .menu-bar {
+                flex-direction: column;
+            }
+
+            .submenu {
+                position: static;
+                min-width: auto;
+            }
+        }
+
+        /* Estilos adicionales para el menú mejorado */
+        .edit-btn, .delete-btn {
+            background: none;
+            border: none;
+            padding: 2px 5px;
+            margin: 0 2px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.2s ease;
+        }
+
+        .edit-btn {
+            color: #1e3c72;
+        }
+
+        .edit-btn:hover {
+            background: #1e3c72;
+            color: white;
+        }
+
+        .delete-btn {
+            color: #dc143c;
+        }
+
+        .delete-btn:hover {
+            background: #dc143c;
+            color: white;
+        }
+
+        .menu-controls, .submenu-controls {
+            margin-left: 10px;
+        }
+
+        .submenu a {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .menu-link {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>💻 Ejercicios de Programación Web</h1>
+            <p>HTML, CSS y JavaScript - Complejidad Baja y Media</p>
+        </div>
+
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="mostrarEjercicio(1)">1. Cambio de Estilo</button>
+            <button class="nav-tab" onclick="mostrarEjercicio(2)">2. Calculadora</button>
+            <button class="nav-tab" onclick="mostrarEjercicio(3)">3. Pasar Ratón Imagen</button>
+            <button class="nav-tab" onclick="mostrarEjercicio(4)">4. Reloj Analógico</button>
+            <button class="nav-tab" onclick="mostrarEjercicio(5)">5. Validación Formulario</button>
+            <button class="nav-tab" onclick="mostrarEjercicio(6)">6. Lista Tareas</button>
+            <button class="nav-tab" onclick="mostrarEjercicio(7)">7. Menú Desplegable</button>
+            <button class="nav-tab" onclick="mostrarEjercicio(8)">8. Carrusel</button>
+            <button class="nav-tab" onclick="mostrarEjercicio(9)">9. Temporizador</button>
+            <button class="nav-tab" onclick="mostrarEjercicio(10)">10. Cuestionario</button>
+        </div>
+
+        <!-- Ejercicio 1: Cambio de Estilo al Clic -->
+        <div class="exercise active" id="ejercicio1">
+            <h2>🎨 Ejercicio 1: Cambio de Estilo al Clic</h2>
+            <div class="style-changer">
+                <div class="color-box" id="cajaColor">¡Haz clic en los botones!</div>
+                <div>
+                    <button class="btn" onclick="cambiarColor('red')" style="background: red;">Rojo</button>
+                    <button class="btn" onclick="cambiarColor('blue')" style="background: blue;">Azul</button>
+                    <button class="btn" onclick="cambiarColor('green')" style="background: green;">Verde</button>
+                    <button class="btn" onclick="cambiarColor('purple')" style="background: purple;">Morado</button>
+                    <button class="btn" onclick="cambiarColor('orange')" style="background: orange;">Naranja</button>
+                    <button class="btn" onclick="reiniciarColor()">Reiniciar</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ejercicio 2: Calculadora Simple -->
+        <div class="exercise" id="ejercicio2">
+            <h2>🧮 Ejercicio 2: Calculadora Simple</h2>
+            <div class="calculator">
+                <input type="text" class="calc-display" id="pantallaCalc" readonly>
+                <div class="calc-buttons">
+                    <button class="calc-btn operator" onclick="limpiarPantalla()">C</button>
+                    <button class="calc-btn operator" onclick="borrarUltimo()">⌫</button>
+                    <button class="calc-btn operator" onclick="agregarAPantalla('/')">/</button>
+                    <button class="calc-btn operator" onclick="agregarAPantalla('*')">×</button>
+                    
+                    <button class="calc-btn number" onclick="agregarAPantalla('7')">7</button>
+                    <button class="calc-btn number" onclick="agregarAPantalla('8')">8</button>
+                    <button class="calc-btn number" onclick="agregarAPantalla('9')">9</button>
+                    <button class="calc-btn operator" onclick="agregarAPantalla('-')">-</button>
+                    
+                    <button class="calc-btn number" onclick="agregarAPantalla('4')">4</button>
+                    <button class="calc-btn number" onclick="agregarAPantalla('5')">5</button>
+                    <button class="calc-btn number" onclick="agregarAPantalla('6')">6</button>
+                    <button class="calc-btn operator" onclick="agregarAPantalla('+')">+</button>
+                    
+                    <button class="calc-btn number" onclick="agregarAPantalla('1')">1</button>
+                    <button class="calc-btn number" onclick="agregarAPantalla('2')">2</button>
+                    <button class="calc-btn number" onclick="agregarAPantalla('3')">3</button>
+                    <button class="calc-btn equals" onclick="calcular()" style="grid-row: span 2;">=</button>
+                    
+                    <button class="calc-btn number" onclick="agregarAPantalla('0')" style="grid-column: span 2;">0</button>
+                    <button class="calc-btn number" onclick="agregarAPantalla('.')">.</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ejercicio 3: Cambio de Imagen al Pasar el Ratón -->
+<div class="exercise" id="ejercicio3">
+    <h2>🖼️ Ejercicio 3: Cambio de Imagen al Pasar el Ratón</h2>
+    <div class="image-hover">
+        <p>Pasa el ratón sobre las imágenes para ver el cambio completo:</p>
+        
+        <div class="hover-image" id="imagenCambio1" 
+             onmouseenter="cambiarImagen('imagenCambio1', true)" 
+             onmouseleave="cambiarImagen('imagenCambio1', false)">
+            <img id="img1" src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=500&h=300&fit=crop" alt="Código de programación">
+            <div class="image-overlay">
+                <h3 id="titulo1">Código de Programación</h3>
+                <p id="desc1">Desarrollo de software moderno</p>
+            </div>
+        </div>
+
+        <div class="hover-image" id="imagenCambio2" 
+             onmouseenter="cambiarImagen('imagenCambio2', true)" 
+             onmouseleave="cambiarImagen('imagenCambio2', false)">
+            <img id="img2" src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=500&h=300&fit=crop" alt="Desarrollo web">
+            <div class="image-overlay">
+                <h3 id="titulo2">Desarrollo Web</h3>
+                <p id="desc2">Tecnologías frontend y backend</p>
+            </div>
+        </div>
+
+        <div class="hover-image" id="imagenCambio3" 
+             onmouseenter="cambiarImagen('imagenCambio3', true)" 
+             onmouseleave="cambiarImagen('imagenCambio3', false)">
+            <img id="img3" src="https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=500&h=300&fit=crop" alt="Programación Python">
+            <div class="image-overlay">
+                <h3 id="titulo3">Python</h3>
+                <p id="desc3">Lenguaje de programación versátil</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+        <!-- Ejercicio 4: Reloj Analógico -->
+        <div class="exercise" id="ejercicio4">
+            <h2>🕐 Ejercicio 4: Reloj Analógico</h2>
+            <div class="clock-container">
+                <div class="analog-clock">
+                    <div class="hand hour-hand" id="manecillaHora"></div>
+                    <div class="hand minute-hand" id="manecillaMinuto"></div>
+                    <div class="hand second-hand" id="manecillaSegundo"></div>
+                    <div class="clock-center"></div>
+                </div>
+                <div class="digital-time" id="tiempoDigital"></div>
+            </div>
+        </div>
+
+        <!-- Ejercicio 5: Validación de Formulario -->
+        <div class="exercise" id="ejercicio5">
+            <h2>✅ Ejercicio 5: Validación de Formulario</h2>
+            <div class="form-container">
+                <form id="formularioValidacion" onsubmit="validarFormulario(event)">
+                    <div class="form-group">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" id="nombre" name="nombre">
+                        <div class="error-message" id="errorNombre"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="correo">Correo Electrónico:</label>
+                        <input type="email" id="correo" name="correo">
+                        <div class="error-message" id="errorCorreo"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="contrasena">Contraseña:</label>
+                        <input type="password" id="contrasena" name="contrasena">
+                        <div class="error-message" id="errorContrasena"></div>
+                    </div>
+                    <button type="submit" class="btn">Enviar Formulario</button>
+                </form>
+                <div class="success-message" id="mensajeExito"></div>
+            </div>
+        </div>
+
+        <!-- Ejercicio 6: Lista de Tareas Interactiva -->
+        <div class="exercise" id="ejercicio6">
+            <h2>📝 Ejercicio 6: Lista de Tareas Interactiva</h2>
+            <div class="todo-container">
+                <div class="todo-input-container">
+                    <input type="text" class="todo-input" id="entradaTarea" placeholder="Escribe una nueva tarea...">
+                    <button class="btn" onclick="agregarTarea()">Agregar</button>
+                </div>
+                <ul class="todo-list" id="listaTareas"></ul>
+            </div>
+        </div>
+
+        <!-- Ejercicio 7: Menú de Navegación Desplegable -->
+<div class="exercise" id="ejercicio7">
+    <h2>📋 Ejercicio 7: Menú de Navegación Desplegable</h2>
+    <div class="dropdown-menu">
+        <!-- Panel de Administración -->
+<div class="admin-panel" style="background: #f7fafc; padding: 20px; border-radius: 10px; margin-bottom: 20px;">
+    <h3 style="color: #dc143c; margin-bottom: 15px;">🛠️ Panel de Administración del Menú</h3>
+    
+    <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 15px;">
+        <select id="selectorElementos" style="padding: 8px; border: 2px solid #e2e8f0; border-radius: 5px; flex: 1; min-width: 200px;">
+            <option value="">Seleccionar elemento para agregar</option>
+            <option value="🏠 Inicio">🏠 Inicio</option>
+            <option value="🛍️ Tienda">🛍️ Tienda</option>
+            <option value="📞 Soporte">📞 Soporte</option>
+            <option value="📰 Noticias">📰 Noticias</option>
+            <option value="👥 Comunidad">👥 Comunidad</option>
+            <option value="🎓 Educación">🎓 Educación</option>
+            <option value="💼 Negocios">💼 Negocios</option>
+            <option value="🎮 Gaming">🎮 Gaming</option>
+            <option value="🎵 Música">🎵 Música</option>
+            <option value="📱 Apps">📱 Apps</option>
+        </select>
+        <button class="btn" onclick="agregarElementoSeleccionado()">➕ Agregar Elemento</button>
+        <button class="btn" onclick="alternarModoEdicion()" id="btnModoEdicion">✏️ Modo Edición</button>
+    </div>
+    
+    <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+        <select id="selectorSubelementos" style="padding: 8px; border: 2px solid #e2e8f0; border-radius: 5px; flex: 1; min-width: 200px;">
+            <option value="">Seleccionar subelemento para agregar</option>
+            <optgroup label="🛍️ Productos">
+                <option value="💻 Laptops Premium">💻 Laptops Premium</option>
+                <option value="🖥️ PCs Gaming">🖥️ PCs Gaming</option>
+                <option value="📱 Móviles 5G">📱 Móviles 5G</option>
+                <option value="⌚ Smartwatches">⌚ Smartwatches</option>
+                <option value="🎧 Audio Pro">🎧 Audio Pro</option>
+            </optgroup>
+            <optgroup label="🛠️ Servicios">
+                <option value="🔧 Reparación Rápida">🔧 Reparación Rápida</option>
+                <option value="🛡️ Seguro Tech">🛡️ Seguro Tech</option>
+                <option value="📦 Envío Express">📦 Envío Express</option>
+                <option value="💬 Chat 24/7">💬 Chat 24/7</option>
+                <option value="🏠 Instalación">🏠 Instalación</option>
+            </optgroup>
+            <optgroup label="🏢 Empresa">
+                <option value="📋 Historia">📋 Historia</option>
+                <option value="🎯 Objetivos">🎯 Objetivos</option>
+                <option value="🏆 Premios">🏆 Premios</option>
+                <option value="🌍 Ubicaciones">🌍 Ubicaciones</option>
+                <option value="💼 Carreras">💼 Carreras</option>
+            </optgroup>
+            <optgroup label="📚 Recursos">
+                <option value="📖 Manuales">📖 Manuales</option>
+                <option value="🎥 Videos">🎥 Videos</option>
+                <option value="📊 Reportes">📊 Reportes</option>
+                <option value="🔍 Búsqueda">🔍 Búsqueda</option>
+                <option value="📧 Newsletter">📧 Newsletter</option>
+            </optgroup>
+        </select>
+        <select id="menuPadreSelector" style="padding: 8px; border: 2px solid #e2e8f0; border-radius: 5px;">
+            <option value="">Seleccionar menú padre</option>
+            <option value="productos">Productos</option>
+            <option value="servicios">Servicios</option>
+            <option value="empresa">Empresa</option>
+            <option value="recursos">Recursos</option>
+        </select>
+        <button class="btn" onclick="agregarSubelementoSeleccionado()">➕ Agregar Subelemento</button>
+    </div>
+    
+    <!-- Vista previa de cambios -->
+    <div id="vistaPrevia" style="margin-top: 15px; padding: 10px; background: white; border-radius: 5px; border-left: 4px solid #22543d; display: none;">
+        <h4 style="color: #22543d; margin-bottom: 5px;">✅ Cambio Realizado</h4>
+        <p id="mensajePrevia" style="color: #4a5568; margin: 0;"></p>
+    </div>
+</div>
+
+        <!-- Menú Principal -->
+        <nav class="menu-bar" id="menuPrincipal">
+            <div class="menu-item">
+                <a href="#" class="menu-link" onclick="seleccionarElementoMenu(event, 'Inicio')">
+                    <span class="menu-text">Inicio</span>
+                    <span class="menu-controls" style="display: none;">
+                        <button onclick="editarElemento(event, 'Inicio')" class="edit-btn">✏️</button>
+                        <button onclick="eliminarElemento(event, 'Inicio')" class="delete-btn">🗑️</button>
+                    </span>
+                </a>
+            </div>
+            
+            <div class="menu-item">
+                <a href="#" class="menu-link" onclick="alternarSubmenu(event, 'submenu-productos')">
+                    <span class="menu-text">Productos ▼</span>
+                    <span class="menu-controls" style="display: none;">
+                        <button onclick="editarElemento(event, 'Productos')" class="edit-btn">✏️</button>
+                        <button onclick="eliminarElemento(event, 'Productos')" class="delete-btn">🗑️</button>
+                    </span>
+                </a>
+                <div class="submenu" id="submenu-productos">
+                    <a href="#" onclick="seleccionarSubElemento(event, 'Laptops Gaming')">
+                        <span class="submenu-text">💻 Laptops Gaming</span>
+                        <span class="submenu-controls" style="display: none;">
+                            <button onclick="editarSubelemento(event, 'Laptops Gaming')" class="edit-btn">✏️</button>
+                            <button onclick="eliminarSubelemento(event, this)" class="delete-btn">🗑️</button>
+                        </span>
+                    </a>
+                    <a href="#" onclick="seleccionarSubElemento(event, 'Smartphones')">
+                        <span class="submenu-text">📱 Smartphones</span>
+                        <span class="submenu-controls" style="display: none;">
+                            <button onclick="editarSubelemento(event, 'Smartphones')" class="edit-btn">✏️</button>
+                            <button onclick="eliminarSubelemento(event, this)" class="delete-btn">🗑️</button>
+                        </span>
+                    </a>
+                    <a href="#" onclick="seleccionarSubElemento(event, 'Tablets Pro')">
+                        <span class="submenu-text">📱 Tablets Pro</span>
+                        <span class="submenu-controls" style="display: none;">
+                            <button onclick="editarSubelemento(event, 'Tablets Pro')" class="edit-btn">✏️</button>
+                            <button onclick="eliminarSubelemento(event, this)" class="delete-btn">🗑️</button>
+                        </span>
+                    </a>
+                    <a href="#" onclick="seleccionarSubElemento(event, 'Accesorios Tech')">
+                        <span class="submenu-text">🎧 Accesorios Tech</span>
+                        <span class="submenu-controls" style="display: none;">
+                            <button onclick="editarSubelemento(event, 'Accesorios Tech')" class="edit-btn">✏️</button>
+                            <button onclick="eliminarSubelemento(event, this)" class="delete-btn">🗑️</button>
+                        </span>
+                    </a>
+                    <a href="#" onclick="seleccionarSubElemento(event, 'Componentes PC')">
+                        <span class="submenu-text">🔧 Componentes PC</span>
+                        <span class="submenu-controls" style="display: none;">
+                            <button onclick="editarSubelemento(event, 'Componentes PC')" class="edit-btn">✏️</button>
+                            <button onclick="eliminarSubelemento(event, this)" class="delete-btn">🗑️</button>
+                        </span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="menu-item">
+                <a href="#" class="menu-link" onclick="alternarSubmenu(event, 'submenu-servicios')">
+                    <span class="menu-text">Servicios ▼</span>
+                    <span class="menu-controls" style="display: none;">
+                        <button onclick="editarElemento(event, 'Servicios')" class="edit-btn">✏️</button>
+                        <button onclick="eliminarElemento(event, 'Servicios')" class="delete-btn">🗑️</button>
+                    </span>
+                </a>
+                <div class="submenu" id="submenu-servicios">
+                    <a href="#" onclick="seleccionarSubElemento(event, 'Soporte Técnico 24/7')">
+                        <span class="submenu-text">🛠️ Soporte Técnico 24/7</span>
+                        <span class="submenu-controls" style="display: none;">
+                            <button onclick="editarSubelemento(event, 'Soporte Técnico 24/7')" class="edit-btn">✏️</button>
+                            <button onclick="eliminarSubelemento(event, this)" class="delete-btn">🗑️</button>
+                        </span>
+                    </a>
+                    <a href="#" onclick="seleccionarSubElemento(event, 'Garantía Extendida')">
+                        <span class="submenu-text">🛡️ Garantía Extendida</span>
+                        <span class="submenu-controls" style="display: none;">
+                            <button onclick="editarSubelemento(event, 'Garantía Extendida')" class="edit-btn">✏️</button>
+                            <button onclick="eliminarSubelemento(event, this)" class="delete-btn">🗑️</button>
+                        </span>
+                    </a>
+                    <a href="#" onclick="seleccionarSubElemento(event, 'Reparaciones Express')">
+                        <span class="submenu-text">⚡ Reparaciones Express</span>
+                        <span class="submenu-controls" style="display: none;">
+                            <button onclick="editarSubelemento(event, 'Reparaciones Express')" class="edit-btn">✏️</button>
+                            <button onclick="eliminarSubelemento(event, this)" class="delete-btn">🗑️</button>
+                        </span>
+                    </a>
+                    <a href="#" onclick="seleccionarSubElemento(event, 'Instalación Domicilio')">
+                        <span class="submenu-text">🏠 Instalación Domicilio</span>
+                        <span class="submenu-controls" style="display: none;">
+                            <button onclick="editarSubelemento(event, 'Instalación Domicilio')" class="edit-btn">✏️</button>
+                            <button onclick="eliminarSubelemento(event, this)" class="delete-btn">🗑️</button>
+                        </span>
+                    </a>
+                    <a href="#" onclick="seleccionarSubElemento(event, 'Consultoría IT')">
+                        <span class="submenu-text">💼 Consultoría IT</span>
+                        <span class="submenu-controls" style="display: none;">
+                            <button onclick="editarSubelemento(event, 'Consultoría IT')" class="edit-btn">✏️</button>
+                            <button onclick="eliminarSubelemento(event, this)" class="delete-btn">🗑️</button>
+                        </span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <a href="#" class="menu-link" onclick="alternarSubmenu(event, 'submenu-empresa')">
+                    <span class="menu-text">Empresa ▼</span>
+                    <span class="menu-controls" style="display: none;">
+                        <button onclick="editarElemento(event, 'Empresa')" class="edit-btn">✏️</button>
+                        <button onclick="eliminarElemento(event, 'Empresa')" class="delete-btn">🗑️</button>
+                    </span>
+                </a>
+                <div class="submenu" id="submenu-empresa">
+                    <a href="#" onclick="seleccionarSubElemento(event, 'Sobre Nosotros')">
+                        <span class="submenu-text">🏢 Sobre Nosotros</span>
+                        <span class="submenu-controls" style="display: none;">
+                            <button onclick="editarSubelemento(event, 'Sobre Nosotros')" class="edit-btn">✏️</button>
+                            <button onclick="eliminarSubelemento(event, this)" class="delete-btn">🗑️</button>
+                        </span>
+                    </a>
+                    <a href="#" onclick="seleccionarSubElemento(event, 'Nuestro Equipo')">
+                        <span class="submenu-text">👥 Nuestro Equipo</span>
+                        <span class="submenu-controls" style="display: none;">
+                            <button onclick="editarSubelemento(event, 'Nuestro Equipo')" class="edit-btn">✏️</button>
+                            <button onclick="eliminarSubelemento(event, this)" class="delete-btn">🗑️</button>
+                        </span>
+                    </a>
+                    <a href="#" onclick="seleccionarSubElemento(event, 'Misión y Visión')">
+                        <span class="submenu-text">🎯 Misión y Visión</span>
+                        <span class="submenu-controls" style="display: none;">
+                            <button onclick="editarSubelemento(event, 'Misión y Visión')" class="edit-btn">✏️</button>
+                            <button onclick="eliminarSubelemento(event, this)" class="delete-btn">🗑️</button>
+                        </span>
+                    </a>
+                    <a href="#" onclick="seleccionarSubElemento(event, 'Trabaja con Nosotros')">
+                        <span class="submenu-text">💼 Trabaja con Nosotros</span>
+                        <span class="submenu-controls" style="display: none;">
+                            <button onclick="editarSubelemento(event, 'Trabaja con Nosotros')" class="edit-btn">✏️</button>
+                            <button onclick="eliminarSubelemento(event, this)" class="delete-btn">🗑️</button>
+                        </span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <a href="#" class="menu-link" onclick="alternarSubmenu(event, 'submenu-recursos')">
+                    <span class="menu-text">Recursos ▼</span>
+                    <span class="menu-controls" style="display: none;">
+                        <button onclick="editarElemento(event, 'Recursos')" class="edit-btn">✏️</button>
+                        <button onclick="eliminarElemento(event, 'Recursos')" class="delete-btn">🗑️</button>
+                    </span>
+                </a>
+                <div class="submenu" id="submenu-recursos">
+                    <a href="#" onclick="seleccionarSubElemento(event, 'Blog Tecnológico')">
+                        <span class="submenu-text">📝 Blog Tecnológico</span>
+                        <span class="submenu-controls" style="display: none;">
+                            <button onclick="editarSubelemento(event, 'Blog Tecnológico')" class="edit-btn">✏️</button>
+                            <button onclick="eliminarSubelemento(event, this)" class="delete-btn">🗑️</button>
+                        </span>
+                    </a>
+                    <a href="#" onclick="seleccionarSubElemento(event, 'Tutoriales')">
+                        <span class="submenu-text">🎓 Tutoriales</span>
+                        <span class="submenu-controls" style="display: none;">
+                            <button onclick="editarSubelemento(event, 'Tutoriales')" class="edit-btn">✏️</button>
+                            <button onclick="eliminarSubelemento(event, this)" class="delete-btn">🗑️</button>
+                        </span>
+                    </a>
+                    <a href="#" onclick="seleccionarSubElemento(event, 'Descargas')">
+                        <span class="submenu-text">⬇️ Descargas</span>
+                        <span class="submenu-controls" style="display: none;">
+                            <button onclick="editarSubelemento(event, 'Descargas')" class="edit-btn">✏️</button>
+                            <button onclick="eliminarSubelemento(event, this)" class="delete-btn">🗑️</button>
+                        </span>
+                    </a>
+                    <a href="#" onclick="seleccionarSubElemento(event, 'FAQ')">
+                        <span class="submenu-text">❓ FAQ</span>
+                        <span class="submenu-controls" style="display: none;">
+                            <button onclick="editarSubelemento(event, 'FAQ')" class="edit-btn">✏️</button>
+                            <button onclick="eliminarSubelemento(event, this)" class="delete-btn">🗑️</button>
+                        </span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="menu-item">
+                <a href="#" class="menu-link" onclick="seleccionarElementoMenu(event, 'Contacto')">
+                    <span class="menu-text">Contacto</span>
+                    <span class="menu-controls" style="display: none;">
+                        <button onclick="editarElemento(event, 'Contacto')" class="edit-btn">✏️</button>
+                        <button onclick="eliminarElemento(event, 'Contacto')" class="delete-btn">🗑️</button>
+                    </span>
+                </a>
+            </div>
+        </nav>
+        
+        <!-- Área de Información -->
+        <div id="menuInfo" style="margin-top: 20px; padding: 20px; background: #f7fafc; border-radius: 8px; text-align: center; border-left: 4px solid #dc143c;">
+            <h4 style="color: #dc143c; margin-bottom: 10px;">📍 Información del Menú</h4>
+            <p style="color: #4a5568;">Haz clic en cualquier elemento del menú para ver información detallada</p>
+            <div id="estadisticasMenu" style="margin-top: 15px; display: flex; justify-content: space-around; flex-wrap: wrap; gap: 10px;">
+                <div style="background: white; padding: 10px; border-radius: 5px; min-width: 120px;">
+                    <strong style="color: #dc143c;">Elementos:</strong>
+                    <div id="contadorElementos">6</div>
+                </div>
+                <div style="background: white; padding: 10px; border-radius: 5px; min-width: 120px;">
+                    <strong style="color: #1e3c72;">Subelementos:</strong>
+                    <div id="contadorSubelementos">19</div>
+                </div>
+                <div style="background: white; padding: 10px; border-radius: 5px; min-width: 120px;">
+                    <strong style="color: #22543d;">Último clic:</strong>
+                    <div id="ultimoClic">Ninguno</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+        <!-- Ejercicio 8: Carrusel de Imágenes -->
+        <div class="exercise" id="ejercicio8">
+            <h2>🎠 Ejercicio 8: Carrusel de Imágenes</h2>
+            <div class="carousel-container">
+                <div class="carousel-track" id="pistaCarrusel">
+                    <div class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1516116216624-53e697fedbea?w=600&h=400&fit=crop" alt="Programación JavaScript">
+                        <div class="slide-content">
+                            <h3>JavaScript</h3>
+                            <p>Lenguaje de programación dinámico para desarrollo web</p>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop" alt="Desarrollo Web">
+                        <div class="slide-content">
+                            <h3>Desarrollo Web</h3>
+                            <p>Creación de aplicaciones web modernas y responsivas</p>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&h=400&fit=crop" alt="Código HTML/CSS">
+                        <div class="slide-content">
+                            <h3>HTML y CSS</h3>
+                            <p>Estructura y diseño de páginas web profesionales</p>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=600&h=400&fit=crop" alt="Programación Python">
+                        <div class="slide-content">
+                            <h3>Python</h3>
+                            <p>Lenguaje versátil para desarrollo y ciencia de datos</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-btn prev" onclick="moverCarrusel(-1)">❮</button>
+                <button class="carousel-btn next" onclick="moverCarrusel(1)">❯</button>
+                <div class="carousel-indicators">
+                    <span class="indicator active" onclick="irADiapositiva(0)"></span>
+                    <span class="indicator" onclick="irADiapositiva(1)"></span>
+                    <span class="indicator" onclick="irADiapositiva(2)"></span>
+                    <span class="indicator" onclick="irADiapositiva(3)"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ejercicio 9: Temporizador de Cuenta Regresiva -->
+        <div class="exercise" id="ejercicio9">
+            <h2>⏰ Ejercicio 9: Temporizador de Cuenta Regresiva</h2>
+            <div class="timer-container">
+                <div class="timer-display" id="pantallaTimer">00:00:00</div>
+                <div class="timer-controls">
+                    <input type="number" class="timer-input" id="entradaHoras" placeholder="HH" min="0" max="23" value="0">
+                    <input type="number" class="timer-input" id="entradaMinutos" placeholder="MM" min="0" max="59" value="5">
+                    <input type="number" class="timer-input" id="entradaSegundos" placeholder="SS" min="0" max="59" value="0">
+                    <button class="btn" onclick="iniciarTimer()">Iniciar</button>
+                    <button class="btn" onclick="pausarTimer()">Pausar</button>
+                    <button class="btn" onclick="reiniciarTimer()">Reiniciar</button>
+                </div>
+                <div class="timer-status" id="estadoTimer">Listo para iniciar</div>
+            </div>
+        </div>
+
+        <!-- Ejercicio 10: Juego de Preguntas y Respuestas -->
+        <div class="exercise" id="ejercicio10">
+            <h2>🧠 Ejercicio 10: Juego de Preguntas y Respuestas</h2>
+            <div class="quiz-container">
+                <div id="contenidoCuestionario">
+                    <div class="question">
+                        <h3>1. ¿Qué significa HTML?</h3>
+                        <ul class="options">
+                            <li><input type="radio" name="p1" value="a"> Lenguaje de Marcado de Hipertexto</li>
+                            <li><input type="radio" name="p1" value="b"> Lenguaje Moderno de Alta Tecnología</li>
+                            <li><input type="radio" name="p1" value="c"> Lenguaje de Marcado de Herramientas Domésticas</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="question">
+                        <h3>2. ¿Cuál es la etiqueta correcta para crear un enlace?</h3>
+                        <ul class="options">
+                            <li><input type="radio" name="p2" value="a"> &lt;enlace&gt;</li>
+                            <li><input type="radio" name="p2" value="b"> &lt;a&gt;</li>
+                            <li><input type="radio" name="p2" value="c"> &lt;href&gt;</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="question">
+                        <h3>3. ¿Qué propiedad CSS se usa para cambiar el color de texto?</h3>
+                        <ul class="options">
+                            <li><input type="radio" name="p3" value="a"> color-texto</li>
+                            <li><input type="radio" name="p3" value="b"> color-fuente</li>
+                            <li><input type="radio" name="p3" value="c"> color</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="question">
+                        <h3>4. ¿Cómo se declara una variable en JavaScript?</h3>
+                        <ul class="options">
+                            <li><input type="radio" name="p4" value="a"> var nombreVariable;</li>
+                            <li><input type="radio" name="p4" value="b"> variable nombreVariable;</li>
+                            <li><input type="radio" name="p4" value="c"> declarar nombreVariable;</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="question">
+                        <h3>5. ¿Cuál es el método correcto para seleccionar un elemento por ID en JavaScript?</h3>
+                        <ul class="options">
+                            <li><input type="radio" name="p5" value="a"> document.getElementById()</li>
+                            <li><input type="radio" name="p5" value="b"> document.getElement()</li>
+                            <li><input type="radio" name="p5" value="c"> document.selectById()</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <button class="btn" onclick="verificarCuestionario()">Verificar Respuestas</button>
+                <div class="quiz-result" id="resultadoCuestionario"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Variables globales
+        let diapositivaActual = 0;
+        let intervalTimer;
+        let segundosTimer = 0;
+        let timerEjecutandose = false;
+        let timerPausado = false;
+        let tareas = [];
+        let autoplayInterval;
+
+        // Función para mostrar ejercicios
+        function mostrarEjercicio(numeroEjercicio) {
+            const ejercicios = document.querySelectorAll('.exercise');
+            ejercicios.forEach(ejercicio => ejercicio.classList.remove('active'));
+            
+            document.getElementById(`ejercicio${numeroEjercicio}`).classList.add('active');
+            
+            const pestanas = document.querySelectorAll('.nav-tab');
+            pestanas.forEach(pestana => pestana.classList.remove('active'));
+            pestanas[numeroEjercicio - 1].classList.add('active');
+            
+            if (numeroEjercicio === 4) {
+                actualizarReloj();
+            } else if (numeroEjercicio === 8) {
+                iniciarAutoplayCarrusel();
+            } else {
+                detenerAutoplayCarrusel();
+            }
+        }
+
+        // Ejercicio 1: Cambio de Estilo al Clic
+        function cambiarColor(color) {
+            const cajaColor = document.getElementById('cajaColor');
+            cajaColor.style.backgroundColor = color;
+            cajaColor.style.color = 'white';
+            cajaColor.style.transform = 'scale(1.1)';
+            cajaColor.textContent = `Color: ${color.toUpperCase()}`;
+            
+            setTimeout(() => {
+                cajaColor.style.transform = 'scale(1)';
+            }, 200);
+        }
+
+        function reiniciarColor() {
+            const cajaColor = document.getElementById('cajaColor');
+            cajaColor.style.backgroundColor = '#e2e8f0';
+            cajaColor.style.color = '#4a5568';
+            cajaColor.textContent = '¡Haz clic en los botones!';
+        }
+
+        // Ejercicio 3: Cambio de Imagen al Pasar el Ratón
+const imagenesOriginales = {
+    'imagenCambio1': {
+        src: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=500&h=300&fit=crop',
+        titulo: 'Código de Programación',
+        desc: 'Desarrollo de software moderno'
+    },
+    'imagenCambio2': {
+        src: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=500&h=300&fit=crop',
+        titulo: 'Desarrollo Web',
+        desc: 'Tecnologías frontend y backend'
+    },
+    'imagenCambio3': {
+        src: 'https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=500&h=300&fit=crop',
+        titulo: 'Python',
+        desc: 'Lenguaje de programación versátil'
+    }
+};
+
+const imagenesHover = {
+    'imagenCambio1': {
+        src: 'https://images.unsplash.com/photo-1516116216624-53e697fedbea?w=500&h=300&fit=crop',
+        titulo: 'JavaScript Avanzado',
+        desc: 'Programación interactiva y dinámica'
+    },
+    'imagenCambio2': {
+        src: 'https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=500&h=300&fit=crop',
+        titulo: 'Aplicaciones Móviles',
+        desc: 'Desarrollo para iOS y Android'
+    },
+    'imagenCambio3': {
+        src: 'https://images.unsplash.com/photo-1518773553398-650c184e0bb3?w=500&h=300&fit=crop',
+        titulo: 'Bases de Datos',
+        desc: 'Gestión y almacenamiento de datos'
+    }
+};
+
+function cambiarImagen(idImagen, esHover) {
+    const imgElement = document.getElementById(idImagen.replace('imagenCambio', 'img'));
+    const tituloElement = document.getElementById(idImagen.replace('imagenCambio', 'titulo'));
+    const descElement = document.getElementById(idImagen.replace('imagenCambio', 'desc'));
+    
+    if (esHover) {
+        // Cambiar a imagen de hover
+        const datosHover = imagenesHover[idImagen];
+        imgElement.src = datosHover.src;
+        tituloElement.textContent = datosHover.titulo;
+        descElement.textContent = datosHover.desc;
+        
+        // Añadir efecto visual
+        imgElement.style.transform = 'scale(1.1)';
+        imgElement.style.filter = 'brightness(1.2) saturate(1.3)';
+    } else {
+        // Volver a imagen original
+        const datosOriginales = imagenesOriginales[idImagen];
+        imgElement.src = datosOriginales.src;
+        tituloElement.textContent = datosOriginales.titulo;
+        descElement.textContent = datosOriginales.desc;
+        
+        // Quitar efecto visual
+        imgElement.style.transform = 'scale(1)';
+        imgElement.style.filter = 'none';
+    }
+}
+
+        // Ejercicio 2: Calculadora Simple
+        function agregarAPantalla(valor) {
+            const pantalla = document.getElementById('pantallaCalc');
+            pantalla.value += valor;
+        }
+
+        function limpiarPantalla() {
+            document.getElementById('pantallaCalc').value = '';
+        }
+
+        function borrarUltimo() {
+            const pantalla = document.getElementById('pantallaCalc');
+            pantalla.value = pantalla.value.slice(0, -1);
+        }
+
+        function calcular() {
+            const pantalla = document.getElementById('pantallaCalc');
+            try {
+                const expresion = pantalla.value.replace(/×/g, '*');
+                const resultado = eval(expresion);
+                pantalla.value = resultado;
+            } catch (error) {
+                pantalla.value = 'Error';
+                setTimeout(() => {
+                    pantalla.value = '';
+                }, 1500);
+            }
+        }
+
+        // Ejercicio 4: Reloj Analógico
+        function actualizarReloj() {
+            const ahora = new Date();
+            const horas = ahora.getHours() % 12;
+            const minutos = ahora.getMinutes();
+            const segundos = ahora.getSeconds();
+
+            const anguloHora = (horas * 30) + (minutos * 0.5);
+            const anguloMinuto = minutos * 6;
+            const anguloSegundo = segundos * 6;
+
+            document.getElementById('manecillaHora').style.transform = `rotate(${anguloHora}deg)`;
+            document.getElementById('manecillaMinuto').style.transform = `rotate(${anguloMinuto}deg)`;
+            document.getElementById('manecillaSegundo').style.transform = `rotate(${anguloSegundo}deg)`;
+
+            const cadenaHora = ahora.toLocaleTimeString();
+            document.getElementById('tiempoDigital').textContent = cadenaHora;
+        }
+
+        setInterval(actualizarReloj, 1000);
+
+        // Ejercicio 5: Validación de Formulario
+        function validarFormulario(evento) {
+            evento.preventDefault();
+            
+            const nombre = document.getElementById('nombre').value.trim();
+            const correo = document.getElementById('correo').value.trim();
+            const contrasena = document.getElementById('contrasena').value.trim();
+            
+            let esValido = true;
+            
+            document.getElementById('errorNombre').textContent = '';
+            document.getElementById('errorCorreo').textContent = '';
+            document.getElementById('errorContrasena').textContent = '';
+            document.getElementById('mensajeExito').textContent = '';
+            
+            document.getElementById('nombre').classList.remove('error');
+            document.getElementById('correo').classList.remove('error');
+            document.getElementById('contrasena').classList.remove('error');
+            
+            if (nombre === '') {
+                document.getElementById('errorNombre').textContent = 'El nombre es requerido';
+                document.getElementById('nombre').classList.add('error');
+                esValido = false;
+            }
+            
+            const regexCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (correo === '') {
+                document.getElementById('errorCorreo').textContent = 'El correo electrónico es requerido';
+                document.getElementById('correo').classList.add('error');
+                esValido = false;
+            } else if (!regexCorreo.test(correo)) {
+                document.getElementById('errorCorreo').textContent = 'Ingrese un correo electrónico válido';
+                document.getElementById('correo').classList.add('error');
+                esValido = false;
+            }
+            
+            if (contrasena === '') {
+                document.getElementById('errorContrasena').textContent = 'La contraseña es requerida';
+                document.getElementById('contrasena').classList.add('error');
+                esValido = false;
+            } else if (contrasena.length < 6) {
+                document.getElementById('errorContrasena').textContent = 'La contraseña debe tener al menos 6 caracteres';
+                document.getElementById('contrasena').classList.add('error');
+                esValido = false;
+            }
+            
+            if (esValido) {
+                document.getElementById('mensajeExito').textContent = '¡Formulario enviado correctamente!';
+                document.getElementById('formularioValidacion').reset();
+            }
+        }
+
+        // Ejercicio 6: Lista de Tareas Interactiva
+        function agregarTarea() {
+            const entrada = document.getElementById('entradaTarea');
+            const textoTarea = entrada.value.trim();
+            
+            if (textoTarea !== '') {
+                const tarea = {
+                    id: Date.now(),
+                    texto: textoTarea,
+                    completada: false
+                };
+                
+                tareas.push(tarea);
+                entrada.value = '';
+                renderizarTareas();
+            }
+        }
+
+        function eliminarTarea(id) {
+            tareas = tareas.filter(tarea => tarea.id !== id);
+            renderizarTareas();
+        }
+
+        function alternarTarea(id) {
+            tareas = tareas.map(tarea => 
+                tarea.id === id ? { ...tarea, completada: !tarea.completada } : tarea
+            );
+            renderizarTareas();
+        }
+
+        function renderizarTareas() {
+            const listaTareas = document.getElementById('listaTareas');
+            listaTareas.innerHTML = '';
+            
+            tareas.forEach(tarea => {
+                const li = document.createElement('li');
+                li.className = `todo-item ${tarea.completada ? 'completed' : ''}`;
+                li.innerHTML = `
+                    <span onclick="alternarTarea(${tarea.id})" style="cursor: pointer;">${tarea.texto}</span>
+                    <button class="delete-btn" onclick="eliminarTarea(${tarea.id})">Eliminar</button>
+                `;
+                listaTareas.appendChild(li);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const entradaTarea = document.getElementById('entradaTarea');
+            if (entradaTarea) {
+                entradaTarea.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        agregarTarea();
+                    }
+                });
+            }
+        });
+
+        // Variables para el menú
+        let modoEdicion = false;
+        let contadorElementos = 6;
+        let contadorSubelementos = 19;
+
+        // Ejercicio 7: Menú de Navegación Desplegable Mejorado
+        function alternarSubmenu(evento, idSubmenu) {
+            evento.preventDefault();
+            
+            const todosSubmenus = document.querySelectorAll('.submenu');
+            todosSubmenus.forEach(submenu => {
+                if (submenu.id !== idSubmenu) {
+                    submenu.classList.remove('show');
+                }
+            });
+            
+            const submenu = document.getElementById(idSubmenu);
+            if (submenu) {
+                submenu.classList.toggle('show');
+            }
+        }
+
+        function seleccionarElementoMenu(evento, nombreElemento) {
+            evento.preventDefault();
+    document.getElementById('menuInfo').innerHTML = `
+        <h4 style="color: #dc143c; margin-bottom: 10px;">📍 Elemento Principal Seleccionado</h4>
+        <h3 style="color: #1e3c72;">${nombreElemento}</h3>
+        <p style="color: #4a5568;">Has hecho clic en el elemento principal "${nombreElemento}" del menú.</p>
+        <div style="margin-top: 15px; padding: 10px; background: white; border-radius: 5px;">
+            <strong>Descripción:</strong> Este es un elemento principal del menú de navegación.
+        </div>
+    `;
+    document.getElementById('ultimoClic').textContent = nombreElemento;
+}
+
+function seleccionarSubElemento(evento, nombreSubElemento) {
+    evento.preventDefault();
+    document.getElementById('menuInfo').innerHTML = `
+        <h4 style="color: #dc143c; margin-bottom: 10px;">📍 Subelemento Seleccionado</h4>
+        <h3 style="color: #1e3c72;">${nombreSubElemento}</h3>
+        <p style="color: #4a5568;">Has hecho clic en el subelemento "${nombreSubElemento}" del menú.</p>
+        <div style="margin-top: 15px; padding: 10px; background: white; border-radius: 5px;">
+            <strong>Categoría:</strong> Subelemento de navegación<br>
+            <strong>Acción:</strong> Navegar a la sección correspondiente
+        </div>
+    `;
+    document.getElementById('ultimoClic').textContent = nombreSubElemento;
+}
+
+function alternarModoEdicion() {
+    modoEdicion = !modoEdicion;
+    const controles = document.querySelectorAll('.menu-controls, .submenu-controls');
+    const btnModo = document.getElementById('btnModoEdicion');
+    
+    controles.forEach(control => {
+        control.style.display = modoEdicion ? 'inline' : 'none';
+    });
+    
+    btnModo.textContent = modoEdicion ? '👁️ Modo Vista' : '✏️ Modo Edición';
+    btnModo.style.background = modoEdicion ? '#22543d' : '#dc143c';
+}
+
+function agregarElementoMenu() {
+    const nuevoElemento = document.getElementById('nuevoElemento').value.trim();
+    if (nuevoElemento === '') {
+        alert('Por favor, ingresa un nombre para el nuevo elemento');
+        return;
+    }
+    
+    const menuPrincipal = document.getElementById('menuPrincipal');
+    const nuevoDiv = document.createElement('div');
+    nuevoDiv.className = 'menu-item';
+    
+    const idSubmenu = `submenu-${nuevoElemento.toLowerCase().replace(/\s+/g, '-')}`;
+    
+    nuevoDiv.innerHTML = `
+        <a href="#" class="menu-link" onclick="alternarSubmenu(event, '${idSubmenu}')">
+            <span class="menu-text">${nuevoElemento} ▼</span>
+            <span class="menu-controls" style="display: ${modoEdicion ? 'inline' : 'none'};">
+                <button onclick="editarElemento(event, '${nuevoElemento}')" class="edit-btn">✏️</button>
+                <button onclick="eliminarElemento(event, '${nuevoElemento}')" class="delete-btn">🗑️</button>
+            </span>
+        </a>
+        <div class="submenu" id="${idSubmenu}">
+            <a href="#" onclick="seleccionarSubElemento(event, 'Elemento de ejemplo')">
+                <span class="submenu-text">📄 Elemento de ejemplo</span>
+                <span class="submenu-controls" style="display: ${modoEdicion ? 'inline' : 'none'};">
+                    <button onclick="editarSubelemento(event, 'Elemento de ejemplo')" class="edit-btn">✏️</button>
+                    <button onclick="eliminarSubelemento(event, this)" class="delete-btn">🗑️</button>
+                </span>
+            </a>
+        </div>
+    `;
+    
+    menuPrincipal.appendChild(nuevoDiv);
+    document.getElementById('nuevoElemento').value = '';
+    
+    // Actualizar select de menú padre
+    const selectPadre = document.getElementById('menuPadre');
+    const nuevaOpcion = document.createElement('option');
+    nuevaOpcion.value = nuevoElemento.toLowerCase().replace(/\s+/g, '-');
+    nuevaOpcion.textContent = nuevoElemento;
+    selectPadre.appendChild(nuevaOpcion);
+    
+    contadorElementos++;
+    contadorSubelementos++;
+    actualizarContadores();
+    
+    alert(`Elemento "${nuevoElemento}" agregado exitosamente`);
+}
+
+function agregarSubelemento() {
+    const nuevoSubelemento = document.getElementById('nuevoSubelemento').value.trim();
+    const menuPadre = document.getElementById('menuPadre').value;
+    
+    if (nuevoSubelemento === '' || menuPadre === '') {
+        alert('Por favor, completa todos los campos');
+        return;
+    }
+    
+    const submenu = document.getElementById(`submenu-${menuPadre}`);
+    if (!submenu) {
+        alert('Menú padre no encontrado');
+        return;
+    }
+    
+    const nuevoA = document.createElement('a');
+    nuevoA.href = '#';
+    nuevoA.onclick = function(e) { seleccionarSubElemento(e, nuevoSubelemento); };
+    nuevoA.innerHTML = `
+        <span class="submenu-text">🆕 ${nuevoSubelemento}</span>
+        <span class="submenu-controls" style="display: ${modoEdicion ? 'inline' : 'none'};">
+            <button onclick="editarSubelemento(event, '${nuevoSubelemento}')" class="edit-btn">✏️</button>
+            <button onclick="eliminarSubelemento(event, this)" class="delete-btn">🗑️</button>
+        </span>
+    `;
+    
+    submenu.appendChild(nuevoA);
+    document.getElementById('nuevoSubelemento').value = '';
+    
+    contadorSubelementos++;
+    actualizarContadores();
+    
+    alert(`Subelemento "${nuevoSubelemento}" agregado exitosamente`);
+}
+
+function editarElemento(evento, nombreElemento) {
+    evento.stopPropagation();
+    const nuevoNombre = prompt(`Editar elemento "${nombreElemento}":`, nombreElemento);
+    if (nuevoNombre && nuevoNombre.trim() !== '') {
+        const elemento = evento.target.closest('.menu-link').querySelector('.menu-text');
+        elemento.textContent = nuevoNombre + (elemento.textContent.includes('▼') ? ' ▼' : '');
+        alert(`Elemento renombrado a "${nuevoNombre}"`);
+    }
+}
+
+function editarSubelemento(evento, nombreSubelemento) {
+    evento.stopPropagation();
+    const nuevoNombre = prompt(`Editar subelemento "${nombreSubelemento}":`, nombreSubelemento);
+    if (nuevoNombre && nuevoNombre.trim() !== '') {
+        const elemento = evento.target.closest('a').querySelector('.submenu-text');
+        const icono = elemento.textContent.split(' ')[0];
+        elemento.textContent = `${icono} ${nuevoNombre}`;
+        alert(`Subelemento renombrado a "${nuevoNombre}"`);
+    }
+}
+
+function eliminarElemento(evento, nombreElemento) {
+    evento.stopPropagation();
+    if (confirm(`¿Estás seguro de que quieres eliminar el elemento "${nombreElemento}"?`)) {
+        const menuItem = evento.target.closest('.menu-item');
+        const submenu = menuItem.querySelector('.submenu');
+        const numSubelementos = submenu ? submenu.children.length : 0;
+        
+        menuItem.remove();
+        contadorElementos--;
+        contadorSubelementos -= numSubelementos;
+        actualizarContadores();
+        
+        alert(`Elemento "${nombreElemento}" eliminado exitosamente`);
+    }
+}
+
+function eliminarSubelemento(evento, boton) {
+    evento.stopPropagation();
+    const subelemento = boton.closest('a');
+    const nombreSubelemento = subelemento.querySelector('.submenu-text').textContent;
+    
+    if (confirm(`¿Estás seguro de que quieres eliminar "${nombreSubelemento}"?`)) {
+        subelemento.remove();
+        contadorSubelementos--;
+        actualizarContadores();
+        alert(`Subelemento eliminado exitosamente`);
+    }
+}
+
+function actualizarContadores() {
+    document.getElementById('contadorElementos').textContent = contadorElementos;
+    document.getElementById('contadorSubelementos').textContent = contadorSubelementos;
+}
+
+        // Ejercicio 8: Carrusel de Imágenes
+        function moverCarrusel(direccion) {
+            const diapositivas = document.querySelectorAll('.carousel-slide');
+            const totalDiapositivas = diapositivas.length;
+            
+            diapositivaActual += direccion;
+            
+            if (diapositivaActual >= totalDiapositivas) {
+                diapositivaActual = 0;
+            } else if (diapositivaActual < 0) {
+                diapositivaActual = totalDiapositivas - 1;
+            }
+            
+            actualizarCarrusel();
+        }
+
+        function irADiapositiva(indice) {
+            diapositivaActual = indice;
+            actualizarCarrusel();
+        }
+
+        function actualizarCarrusel() {
+            const pista = document.getElementById('pistaCarrusel');
+            const indicadores = document.querySelectorAll('.indicator');
+            
+            if (pista) {
+                pista.style.transform = `translateX(-${diapositivaActual * 100}%)`;
+            }
+            
+            indicadores.forEach((indicador, indice) => {
+                indicador.classList.toggle('active', indice === diapositivaActual);
+            });
+        }
+
+        function iniciarAutoplayCarrusel() {
+            detenerAutoplayCarrusel();
+            autoplayInterval = setInterval(() => {
+                moverCarrusel(1);
+            }, 4000);
+        }
+
+        function detenerAutoplayCarrusel() {
+            if (autoplayInterval) {
+                clearInterval(autoplayInterval);
+                autoplayInterval = null;
+            }
+        }
+
+        // Ejercicio 9: Temporizador de Cuenta Regresiva
+        function iniciarTimer() {
+            if (!timerEjecutandose) {
+                if (segundosTimer === 0) {
+                    const horas = parseInt(document.getElementById('entradaHoras').value) || 0;
+                    const minutos = parseInt(document.getElementById('entradaMinutos').value) || 0;
+                    const segundos = parseInt(document.getElementById('entradaSegundos').value) || 0;
+                    
+                    segundosTimer = (horas * 3600) + (minutos * 60) + segundos;
+                }
+                
+                if (segundosTimer > 0) {
+                    timerEjecutandose = true;
+                    timerPausado = false;
+                    actualizarEstadoTimer('running');
+                    intervalTimer = setInterval(actualizarTimer, 1000);
+                }
+            }
+        }
+
+        function pausarTimer() {
+            if (timerEjecutandose) {
+                timerEjecutandose = false;
+                timerPausado = true;
+                clearInterval(intervalTimer);
+                actualizarEstadoTimer('paused');
+            }
+        }
+
+        function reiniciarTimer() {
+            timerEjecutandose = false;
+            timerPausado = false;
+            clearInterval(intervalTimer);
+            segundosTimer = 0;
+            document.getElementById('pantallaTimer').textContent = '00:00:00';
+            document.getElementById('entradaHoras').value = '0';
+            document.getElementById('entradaMinutos').value = '5';
+            document.getElementById('entradaSegundos').value = '0';
+            actualizarEstadoTimer('ready');
+        }
+
+        function actualizarTimer() {
+            if (segundosTimer > 0) {
+                segundosTimer--;
+                
+                const horas = Math.floor(segundosTimer / 3600);
+                const minutos = Math.floor((segundosTimer % 3600) / 60);
+                const segundos = segundosTimer % 60;
+                
+                const cadenaHora = `${horas.toString().padStart(2, '0')}:${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
+                document.getElementById('pantallaTimer').textContent = cadenaHora;
+                
+                if (segundosTimer === 0) {
+                    timerEjecutandose = false;
+                    clearInterval(intervalTimer);
+                    actualizarEstadoTimer('finished');
+                    alert('¡Tiempo terminado!');
+                }
+            }
+        }
+
+        function actualizarEstadoTimer(estado) {
+            const elementoEstado = document.getElementById('estadoTimer');
+            elementoEstado.className = 'timer-status';
+            
+            switch(estado) {
+                case 'running':
+                    elementoEstado.classList.add('running');
+                    elementoEstado.textContent = '⏱️ Temporizador en marcha...';
+                    break;
+                case 'paused':
+                    elementoEstado.classList.add('paused');
+                    elementoEstado.textContent = '⏸️ Temporizador pausado';
+                    break;
+                case 'finished':
+                    elementoEstado.classList.add('finished');
+                    elementoEstado.textContent = '🎉 ¡Tiempo terminado!';
+                    break;
+                default:
+                    elementoEstado.textContent = '⏰ Listo para iniciar';
+            }
+        }
+
+        // Ejercicio 10: Juego de Preguntas y Respuestas
+        function verificarCuestionario() {
+            const respuestas = {
+                p1: 'a',
+                p2: 'b',
+                p3: 'c',
+                p4: 'a',
+                p5: 'a'
+            };
+            
+            let puntuacion = 0;
+            let totalPreguntas = Object.keys(respuestas).length;
+            
+            for (let pregunta in respuestas) {
+                const respuestaSeleccionada = document.querySelector(`input[name="${pregunta}"]:checked`);
+                if (respuestaSeleccionada && respuestaSeleccionada.value === respuestas[pregunta]) {
+                    puntuacion++;
+                }
+            }
+            
+            const porcentaje = (puntuacion / totalPreguntas) * 100;
+            const elementoResultado = document.getElementById('resultadoCuestionario');
+            
+            let mensaje = `Puntuación: ${puntuacion}/${totalPreguntas} (${porcentaje.toFixed(1)}%)`;
+            
+            if (porcentaje >= 80) {
+                mensaje += ' - ¡Excelente! 🎉';
+                elementoResultado.style.color = '#1e3c72';
+            } else if (porcentaje >= 60) {
+                mensaje += ' - ¡Bien hecho! 👍';
+                elementoResultado.style.color = '#dc143c';
+            } else {
+                mensaje += ' - Sigue practicando 📚';
+                elementoResultado.style.color = '#dc143c';
+            }
+            
+            elementoResultado.textContent = mensaje;
+        }
+
+        // Inicialización
+        document.addEventListener('DOMContentLoaded', function() {
+            actualizarReloj();
+            console.log('🚀 Todos los ejercicios cargados correctamente');
+        });
+
+function agregarElementoSeleccionado() {
+    const selector = document.getElementById('selectorElementos');
+    const elementoSeleccionado = selector.value;
+    
+    if (elementoSeleccionado === '') {
+        alert('Por favor, selecciona un elemento de la lista');
+        return;
+    }
+    
+    const menuPrincipal = document.getElementById('menuPrincipal');
+    const nuevoDiv = document.createElement('div');
+    nuevoDiv.className = 'menu-item';
+    
+    const nombreLimpio = elementoSeleccionado.replace(/[🏠🛍️📞📰👥🎓💼🎮🎵📱]\s/, '');
+    const idSubmenu = `submenu-${nombreLimpio.toLowerCase().replace(/\s+/g, '-')}`;
+    
+    nuevoDiv.innerHTML = `
+        <a href="#" class="menu-link" onclick="alternarSubmenu(event, '${idSubmenu}')">
+            <span class="menu-text">${elementoSeleccionado} ▼</span>
+            <span class="menu-controls" style="display: ${modoEdicion ? 'inline' : 'none'};">
+                <button onclick="editarElemento(event, '${elementoSeleccionado}')" class="edit-btn">✏️</button>
+                <button onclick="eliminarElemento(event, '${elementoSeleccionado}')" class="delete-btn">🗑️</button>
+            </span>
+        </a>
+        <div class="submenu" id="${idSubmenu}">
+            <a href="#" onclick="seleccionarSubElemento(event, 'Elemento de ejemplo')">
+                <span class="submenu-text">📄 Elemento de ejemplo</span>
+                <span class="submenu-controls" style="display: ${modoEdicion ? 'inline' : 'none'};">
+                    <button onclick="editarSubelemento(event, 'Elemento de ejemplo')" class="edit-btn">✏️</button>
+                    <button onclick="eliminarSubelemento(event, this)" class="delete-btn">🗑️</button>
+                </span>
+            </a>
+        </div>
+    `;
+    
+    menuPrincipal.appendChild(nuevoDiv);
+    selector.value = '';
+    
+    // Actualizar select de menú padre
+    const selectPadre = document.getElementById('menuPadreSelector');
+    const nuevaOpcion = document.createElement('option');
+    nuevaOpcion.value = nombreLimpio.toLowerCase().replace(/\s+/g, '-');
+    nuevaOpcion.textContent = elementoSeleccionado;
+    selectPadre.appendChild(nuevaOpcion);
+    
+    contadorElementos++;
+    contadorSubelementos++;
+    actualizarContadores();
+    
+    // Mostrar vista previa del cambio
+    mostrarVistaPrevia(`Elemento "${elementoSeleccionado}" agregado exitosamente al menú`);
+}
+
+function agregarSubelementoSeleccionado() {
+    const selectorSub = document.getElementById('selectorSubelementos');
+    const selectorPadre = document.getElementById('menuPadreSelector');
+    const subelementoSeleccionado = selectorSub.value;
+    const menuPadre = selectorPadre.value;
+    
+    if (subelementoSeleccionado === '' || menuPadre === '') {
+        alert('Por favor, selecciona un subelemento y un menú padre');
+        return;
+    }
+    
+    const submenu = document.getElementById(`submenu-${menuPadre}`);
+    if (!submenu) {
+        alert('Menú padre no encontrado');
+        return;
+    }
+    
+    const nuevoA = document.createElement('a');
+    nuevoA.href = '#';
+    nuevoA.onclick = function(e) { seleccionarSubElemento(e, subelementoSeleccionado); };
+    nuevoA.innerHTML = `
+        <span class="submenu-text">${subelementoSeleccionado}</span>
+        <span class="submenu-controls" style="display: ${modoEdicion ? 'inline' : 'none'};">
+            <button onclick="editarSubelemento(event, '${subelementoSeleccionado}')" class="edit-btn">✏️</button>
+            <button onclick="eliminarSubelemento(event, this)" class="delete-btn">🗑️</button>
+        </span>
+    `;
+    
+    submenu.appendChild(nuevoA);
+    selectorSub.value = '';
+    selectorPadre.value = '';
+    
+    contadorSubelementos++;
+    actualizarContadores();
+    
+    // Mostrar vista previa del cambio
+    mostrarVistaPrevia(`Subelemento "${subelementoSeleccionado}" agregado a "${menuPadre.toUpperCase()}" exitosamente`);
+}
+
+function mostrarVistaPrevia(mensaje) {
+    const vistaPrevia = document.getElementById('vistaPrevia');
+    const mensajePrevia = document.getElementById('mensajePrevia');
+    
+    mensajePrevia.textContent = mensaje;
+    vistaPrevia.style.display = 'block';
+    
+    // Ocultar después de 3 segundos
+    setTimeout(() => {
+        vistaPrevia.style.display = 'none';
+    }, 3000);
+    
+    // Efecto de animación
+    vistaPrevia.style.opacity = '0';
+    vistaPrevia.style.transform = 'translateY(-10px)';
+    setTimeout(() => {
+        vistaPrevia.style.transition = 'all 0.3s ease';
+        vistaPrevia.style.opacity = '1';
+        vistaPrevia.style.transform = 'translateY(0)';
+    }, 10);
+}
+    </script>
+</body>
+</html>
